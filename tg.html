@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>С Днем Рождения!</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #212121;
+        margin: 0;
+        perspective: 1000px;
+      }
+      .card-container {
+        width: 300px;
+        height: 400px;
+        position: relative;
+        cursor: pointer;
+      }
+      .card {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      /* Добавляем этот класс через JS по клику для переворота */
+      .card.is-flipped {
+        transform: rotateY(180deg);
+      }
+      .card__face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+      /* Лицевая сторона (Обложка нейросети) */
+      .card__face--front {
+        background: url("front_image.jpg") center/cover;
+      }
+      /* Обратная сторона с твоим текстом (отзеркаленная в начале, чтобы потом стать ровно) */
+      .card__face--back {
+        background: #fff;
+        transform: rotateY(180deg);
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="card" onclick="flipCard()">
+        <div class="card__face card__face--front"></div>
+        <div class="card__face card__face--back">
+          <h3 style="color: #e91e63">С днём рождения! 🌸</h3>
+          <p>
+            Хочется пожелать, чтобы каждый твой день был наполнен светом,
+            искренними улыбками и маленькими чудесами. Пусть в твоей душе всегда
+            цветет весна, а в сердце живет любовь. Желаю тебе абсолютной
+            гармонии, бесконечного женского счастья, уюта в доме и вдохновения в
+            каждом мгновении.
+          </p>
+          <p><i>Оставайся такой же прекрасной, сияющей и неповторимой!</i></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Имитация "тапнул по экрану - перевернулось"
+      function flipCard() {
+        document.querySelector(".card").classList.toggle("is-flipped");
+      }
+    </script>
+  </body>
+</html>
